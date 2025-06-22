@@ -1,10 +1,10 @@
 <?php
-$host = "sql12.freesqldatabase.com"; // or the host you got
-$username = "sql12786243";
-$password = "ZMv6VuYWAF";
-$database = "sql12786243";
+$host = getenv('DB_HOST');
+$user = getenv('DB_USER');
+$pass = getenv('DB_PASS');
+$db   = getenv('DB_NAME');
 
-$conn = new mysqli($host, $username, $password, $database);
+$conn = new mysqli($host, $user, $pass, $db);
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
