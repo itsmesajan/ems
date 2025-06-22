@@ -1,19 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
-session_start();
+ob_start();               // Start output buffering first!
+session_start();          // Then start session
+
 include('admin/db_connect.php');
-ob_start();
+
+// Fetch system settings
 $query = $conn->query("SELECT * FROM system_settings limit 1")->fetch_array();
 foreach ($query as $key => $value) {
   if (!is_numeric($key))
     $_SESSION['system'][$key] = $value;
 }
-ob_end_flush();
-include('header.php');
-
-
+ob_end_flush(); // End buffering after everything is safe
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<?php include('header.php'); ?>
 
 <style>
   header.masthead {
